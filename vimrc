@@ -18,8 +18,9 @@
   syntax enable
   syntax on
   filetype off                  " required
-  set number
-  set relativenumber
+  autocmd BufWinEnter * set number
+  autocmd BufWinEnter * set relativenumber
+
   set mouse=a
 " }
 
@@ -39,7 +40,7 @@
     set hlsearch
     set wildmenu
     set wildmode=list:longest,full
-    set foldenable
+    set nofoldenable
     set list
 " }
 " Formating {
@@ -47,7 +48,7 @@
     set autoindent
     set shiftwidth=4
     set expandtab
-    set tabstop=4
+    set tabstop=2
     set softtabstop=4
     set nojoinspaces
     set splitright
@@ -72,12 +73,11 @@
     " Keep Plugin commands between vundle#begin/end.
     
     " plugin on GitHub repo
-    " Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-fugitive'
     Plugin 'ryanoasis/vim-devicons'
     Plugin 'scrooloose/nerdtree'
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     
-    "Plugin 'ryanoasis/nerd-fonts'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
     
@@ -101,14 +101,17 @@
     " Plugin 'vim-fswitch'
     Plugin 'vim-scripts/nginx.vim'
     Plugin 'tpope/vim-surround'
-    "Plugin 'tpope/vim-commentary'
     Plugin 'scrooloose/syntastic'
     Plugin 'majutsushi/tagbar'
+    Plugin 'ternjs/tern_for_vim'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'airblade/vim-gitgutter'
+    Plugin 'mattn/emmet-vim'
+    Plugin 'darthmall/vim-vue'
+    " Plugin 'mkitt/tabline.vim'
     " plugin from http://vim-scripts.org/vim/scripts.html
     " Plugin 'L9'
-    
+
     " Git plugin not hosted on GitHub
     " Plugin 'git://git.wincent.com/command-t.git'
     
@@ -142,37 +145,6 @@
     "
     " }
 " 
-" Mapping {
-    let mapleader=','
-    let maplocalleader='_'
-
-    " Code folding options
-    nmap <leader>f0 :set foldlevel=0<CR>
-    nmap <leader>f1 :set foldlevel=1<CR>
-    nmap <leader>f2 :set foldlevel=2<CR>
-    nmap <leader>f3 :set foldlevel=3<CR>
-    nmap <leader>f4 :set foldlevel=4<CR>
-    nmap <leader>f5 :set foldlevel=5<CR>
-    nmap <leader>f6 :set foldlevel=6<CR>
-    nmap <leader>f7 :set foldlevel=7<CR>
-    nmap <leader>f8 :set foldlevel=8<CR>
-    nmap <leader>f9 :set foldlevel=9<CR>
-    
-    noremap <C-\> :NERDTreeToggle<CR>
-    
-    nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
-    nnoremap <Leader>sv :so $MYVIMRC<CR>
-
-    inoremap <C-x> <Esc>ddi
-    
-    " map Ctrl-s
-    noremap <C-s> :update<CR>
-    vnoremap <C-s> <C-C>:update<CR>
-    inoremap <C-s> <C-O>:update<CR>
-    
-    nnoremap <silent> <F9> :TagbarToggle<CR>
-
-" }
 " Plugins {
     " vim-devicons {
     " Set VimDevIcons to load before these plugins!
@@ -189,7 +161,7 @@
     " ctrlp MRU file mode glyphs 
     let g:webdevicons_enable_ctrlp = 1
     " adding to flagship's statusline 
-    let g:webdevicons_enable_flagship_statusline = 1
+    "let g:webdevicons_enable_flagship_statusline = 1
     " turn on/off file node glyph decorations (not particularly useful)
     let g:WebDevIconsUnicodeDecorateFileNodes = 1
     " use double-width(1) or single-width(0) glyphs 
@@ -212,27 +184,54 @@
     let g:airline_left_sep = "\uE0C6"
     let g:airline_right_sep = "\uE0C7"
     " set the CN (column number) symbol:
-    let g:airline_section_z = airline#section#create(['%{line(".")}' . ":" . '%{col(".")}' . "/" . '%{line("$")}'])
+    let g:airline_section_z = airline#section#create(['%{line(".")}' . "," . '%{col(".")}' . "/" . '%{line("$")}'])
+
+    " set airline-tabline, see :h airline-tabline
     let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_tab_type = 1
+    let g:airline#extensions#tabline#show_buffers = 1
+    let g:airline#extensions#tabline#show_splits = 0
     let g:airline#extensions#tabline#left_sep = ' '
     let g:airline#extensions#tabline#left_alt_sep = '|'
+    let g:airline#extensions#tabline#buffers_label = 'B'
+    let g:airline#extensions#tabline#tabs_label = 'T'
+    let g:airline#extensions#tabline#buffer_idx_mode = 1
+    "let g:airline#extensions#tabline#show_close_button = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
     " }
     " set undo
     set undofile
     set undodir=$HOME/.vim/.undo_history/
 
     " set ctrlp
+    let g:ctrlp_cmd = 'CtrlPMixed'
+
     let g:ctrlp_map = '<C-p>'
     let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
-    
+    let g:ctrlp_use_caching = 1
+
     " set YouCompleteMe
     let g:ycm_key_invoke_completion = '<M-Space>'
     let g:ycm_auto_trigger = 1
-    
+    let g:ycm_error_symbol = "\uF0A4"       " use vim-devicons
+    let g:ycm_warning_symbol = "\uF026"
+    let g:ycm_complete_in_comments = 0
+
     " set tagbar
-    
-    
+    let g:tagbar_show_linenumbers = 2
+    let g:tagbar_compact = 1
+    let g:tagbar_autofocus = 1
+    let g:tagbar_indent = 1
+    let g:tagbar_foldlevel = 3
+    let g:tagbar_iconchars = ['+', '-']
+    let g:tagbar_autopreview = 0
+
+    " set nerdcommenter
+
+
     " enable line numbers
     let NERDTreeShowLineNumbers=1
     " make sure relative line numbers are used
@@ -241,6 +240,57 @@
 
     "  }
 " }
+" Mapping {
+    let mapleader=','
+    let maplocalleader='_'
+    
+    inoremap jk <Esc>
+    " Code folding options
+    "nmap <leader>f0 :set foldlevel=0<CR>
+    "nmap <leader>f1 :set foldlevel=1<CR>
+    "nmap <leader>f2 :set foldlevel=2<CR>
+    "nmap <leader>f3 :set foldlevel=3<CR>
+    "nmap <leader>f4 :set foldlevel=4<CR>
+    "nmap <leader>f5 :set foldlevel=5<CR>
+    "nmap <leader>f6 :set foldlevel=6<CR>
+    "nmap <leader>f7 :set foldlevel=7<CR>
+    "nmap <leader>f8 :set foldlevel=8<CR>
+    "nmap <leader>f9 :set foldlevel=9<CR>
+    
+    noremap <C-\> :NERDTreeToggle<CR>
+    
+    nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+    nnoremap <Leader>sv :so $MYVIMRC<CR>
+
+    inoremap <C-x> <Esc>ddi
+    
+    " map Ctrl-s
+    noremap <C-s> :update<CR>
+    vnoremap <C-s> <C-C>:update<CR>
+    inoremap <C-s> <C-O>:update<CR>
+    
+    nnoremap <silent> <F9> :TagbarToggle<CR>
+    
+    " airline-tabline mapping {
+    "nnoremap <Leader>1 <Plug>AirlineSelectTab1
+    "nnoremap <Leader>2 <Plug>AirlineSelectTab2
+    "nnoremap <Leader>3 <Plug>AirlineSelectTab3
+    "nnoremap <Leader>4 <Plug>AirlineSelectTab4
+    "nnoremap <Leader>5 <Plug>AirlineSelectTab5
+    "nnoremap <Leader>6 <Plug>AirlineSelectTab6
+    "nnoremap <Leader>7 <Plug>AirlineSelectTab7
+    "nnoremap <Leader>8 <Plug>AirlineSelectTab8
+    "nnoremap <Leader>9 <Plug>AirlineSelectTab9
+    "nnoremap <Leader>- <Plug>AirlineSelectPrevTab
+    "nnoremap <Leader>+ <Plug>AirlineSelectNextTab
+    
+    
+    " }
+    " YCM mappings {
+    nnoremap <Leader>jd :YcmCompleter GoTo<CR>
+    nnoremap <Leader>jr :YcmCompleter GoToReferences<CR>
+    " }}
+
 " set theme
 set background=dark
 colorscheme PaperColor
@@ -254,5 +304,4 @@ set cursorcolumn
 " set code folding
 set foldmethod=syntax
 "set nofoldenable
-
 
