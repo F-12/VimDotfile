@@ -112,6 +112,7 @@
     Plugin 'mattn/emmet-vim'
     Plugin 'ashisha/image.vim'
     Plugin 'darthmall/vim-vue'
+    Plugin 'mattn/gist-vim'
     " Plugin 'mkitt/tabline.vim'
     " plugin from http://vim-scripts.org/vim/scripts.html
     " Plugin 'L9'
@@ -216,7 +217,7 @@
     let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
     let g:ctrlp_use_caching = 1
     let g:ctrlp_open_multiple_files = 'ij'
-    let g:ctrlp_extensions = ['buffertag', 'tag', 'quickfix', 'dir', 'undo']
+    let g:ctrlp_extensions = ['buffertag', 'tag', 'quickfix', 'dir']
     " set YouCompleteMe
     let g:ycm_key_invoke_completion = '<M-Space>'
     let g:ycm_auto_trigger = 1
