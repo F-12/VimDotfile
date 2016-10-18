@@ -18,9 +18,6 @@
   syntax enable
   syntax on
   filetype off                  " required
-  autocmd BufWinEnter * set number
-  autocmd BufWinEnter * set relativenumber
-
   set mouse=a
 " }
 
@@ -30,7 +27,9 @@
     set virtualedit=block
     set history=1000
     set spell
-
+    set modifiable
+    set autowriteall
+    set showcmd
 " }
 
 " Vim UI {
@@ -41,7 +40,9 @@
     set wildmenu
     set wildmode=list:longest,full
     set nofoldenable
-    set list
+    set list                        " show tabs and end of lines
+    set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
+    set cmdheight=2
 " }
 " Formating {
     set nowrap
@@ -78,6 +79,7 @@
     Plugin 'scrooloose/nerdtree'
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     
+    Plugin 'mbbill/undotree'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
     
@@ -86,8 +88,8 @@
     Plugin 'NLKNguyen/papercolor-theme'
     
     " syntax highlighting
-    Plugin 'pangloss/vim-javascript'
-    
+    "Plugin 'pangloss/vim-javascript'
+    Plugin 'othree/yajs.vim'
     Plugin 'ctrlpvim/ctrlp.vim'
     
     Plugin 'kshenoy/vim-signature'
@@ -96,7 +98,6 @@
     Plugin 'dyng/ctrlsf.vim'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'scrooloose/nerdcommenter'
-    Plugin 'SirVer/ultisnips'
     Plugin 'derekwyatt/vim-protodef'
     " Plugin 'vim-fswitch'
     Plugin 'vim-scripts/nginx.vim'
@@ -105,8 +106,11 @@
     Plugin 'majutsushi/tagbar'
     Plugin 'ternjs/tern_for_vim'
     Plugin 'Valloric/YouCompleteMe'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'chrisgillis/vim-bootstrap3-snippets'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'mattn/emmet-vim'
+    Plugin 'ashisha/image.vim'
     Plugin 'darthmall/vim-vue'
     " Plugin 'mkitt/tabline.vim'
     " plugin from http://vim-scripts.org/vim/scripts.html
@@ -206,19 +210,28 @@
     set undodir=$HOME/.vim/.undo_history/
 
     " set ctrlp
-    let g:ctrlp_cmd = 'CtrlPMixed'
-
-    let g:ctrlp_map = '<C-p>'
+    let g:ctrlp_cmd = 'CtrlPLastMode'         " set ctrlp use last search mode
+    let g:ctrlp_map = '<C-p>'                 " set ctrlp key map
     let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
     let g:ctrlp_use_caching = 1
-
+    let g:ctrlp_open_multiple_files = 'ij'
+    let g:ctrlp_extensions = ['buffertag', 'tag', 'quickfix', 'dir', 'undo']
     " set YouCompleteMe
     let g:ycm_key_invoke_completion = '<M-Space>'
     let g:ycm_auto_trigger = 1
     let g:ycm_error_symbol = "\uF0A4"       " use vim-devicons
     let g:ycm_warning_symbol = "\uF026"
     let g:ycm_complete_in_comments = 0
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+    " set UltiSnips
+    let g:UltiSnipsEditSplit = "vertical"
+    let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+    let g:UltiSnipsExpandTrigger="<Tab>"
+    let g:UltiSnipsJumpForwardTrigger="<C-f>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
     " set tagbar
     let g:tagbar_show_linenumbers = 2
@@ -304,4 +317,7 @@ set cursorcolumn
 " set code folding
 set foldmethod=syntax
 "set nofoldenable
+autocmd BufWinEnter * set number
+autocmd BufWinEnter * set relativenumber
+
 
