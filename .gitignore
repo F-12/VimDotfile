@@ -1,3 +1,5 @@
 bundle/
 .undo_history/
 *.swp
+.swap/
+.backup

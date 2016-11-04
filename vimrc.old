@@ -30,11 +30,6 @@
     set modifiable
     set autowriteall
     set showcmd
-
-    set backup
-    set backupdir=$XDG_CACHE_HOME/vim/backup
-    set directory=$XDG_CACHE_HOME/vim/swap
-    "set vimnfo+=n$XDG_CACHE_HOME/vim/viminfo
 " }
 
 " Vim UI {
@@ -48,15 +43,14 @@
     set list                        " show tabs and end of lines
     set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
     set cmdheight=2
-    set termguicolors
 " }
 " Formating {
     set nowrap
     set autoindent
-    set shiftwidth=2
-    set tabstop=2
-    set softtabstop=2
+    set shiftwidth=4
     set expandtab
+    set tabstop=2
+    set softtabstop=4
     set nojoinspaces
     set splitright
     set splitbelow
@@ -118,16 +112,11 @@
     Plugin 'mattn/emmet-vim'
     Plugin 'ashisha/image.vim'
     Plugin 'darthmall/vim-vue'
-    Plugin 'mattn/webapi-vim'
     Plugin 'mattn/gist-vim'
-    Plugin 'mhinz/vim-rfc'
-    Plugin 'cohama/lexima.vim'
-    
     " Plugin 'mkitt/tabline.vim'
-
     " plugin from http://vim-scripts.org/vim/scripts.html
     " Plugin 'L9'
-    
+
     " Git plugin not hosted on GitHub
     " Plugin 'git://git.wincent.com/command-t.git'
     
@@ -161,9 +150,6 @@
     "
     " }
 " 
-" Vim8 package {
-    "packadd! matchit
-" }
 " Plugins {
     " vim-devicons {
     " Set VimDevIcons to load before these plugins!
@@ -259,51 +245,44 @@
 
     " set nerdcommenter
 
-    " set gist-vim
-    let g:gist_post_private = 1
-    let g:gist_list_vsplit = 1
 
-    " NERDTree setting {
+    " enable line numbers
     let NERDTreeShowLineNumbers=1
     " make sure relative line numbers are used
     autocmd FileType nerdtree setlocal relativenumber
-    " }
 
-    " emmet setting {
-    let s:emmet_settings = {
-    \    'html': {
-    \        'default_attributes': {
-    \            'a': {'href': ''},
-    \            'button': {'type': 'button'},
-    \            'img': {'src': ''},
-    \            'link': {'href': ''},
-    \            'ins': {'datetime': '${datetime}'},
-    \            'iframe': [{'src': ''}, {'frameborder': '0'}],
-    \            'textarea': [{'name': ''}, {'id': ''}, {'cols': '30'}, {'rows': '10'}],
-    \        },
-    \    },
-    \}
-    " }
 
+    "  }
 " }
 " Mapping {
     let mapleader=','
     let maplocalleader='_'
-
-    " Basic Mapping {
+    
     inoremap jk <Esc>
-    inoremap <C-x> <Esc>ddi
+    " Code folding options
+    "nmap <leader>f0 :set foldlevel=0<CR>
+    "nmap <leader>f1 :set foldlevel=1<CR>
+    "nmap <leader>f2 :set foldlevel=2<CR>
+    "nmap <leader>f3 :set foldlevel=3<CR>
+    "nmap <leader>f4 :set foldlevel=4<CR>
+    "nmap <leader>f5 :set foldlevel=5<CR>
+    "nmap <leader>f6 :set foldlevel=6<CR>
+    "nmap <leader>f7 :set foldlevel=7<CR>
+    "nmap <leader>f8 :set foldlevel=8<CR>
+    "nmap <leader>f9 :set foldlevel=9<CR>
+    
+    noremap <C-\> :NERDTreeToggle<CR>
+    
     nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
     nnoremap <Leader>sv :so $MYVIMRC<CR>
-    nnoremap <Leader>b :buffers<CR>:buffer<Space>
-    nnoremap <Leader>vh :vertical :help<Space>
 
-    " }
+    inoremap <C-x> <Esc>ddi
     
-    " NERDTree Mapping {
-    noremap <C-\> :NERDTreeToggle<CR>
-    "}
-
+    " map Ctrl-s
+    noremap <C-s> :update<CR>
+    vnoremap <C-s> <C-C>:update<CR>
+    inoremap <C-s> <C-O>:update<CR>
+    
     nnoremap <silent> <F9> :TagbarToggle<CR>
     
     " airline-tabline mapping {
@@ -318,14 +297,13 @@
     "nnoremap <Leader>9 <Plug>AirlineSelectTab9
     "nnoremap <Leader>- <Plug>AirlineSelectPrevTab
     "nnoremap <Leader>+ <Plug>AirlineSelectNextTab
+    
+    
     " }
-
     " YCM mappings {
     nnoremap <Leader>jd :YcmCompleter GoTo<CR>
     nnoremap <Leader>jr :YcmCompleter GoToReferences<CR>
-    " }
-    
-" }
+    " }}
 
 " set theme
 set background=dark
