@@ -1,2 +1,3 @@
-" source base vim configuration
-source $XDG_CONFIG_HOME/nvim/vimrc
+  source $XDG_CONFIG_HOME/vim/before.vim
+  source $XDG_CONFIG_HOME/vim/config.vim
+  source $XDG_CONFIG_HOME/vim/after.vim
