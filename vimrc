@@ -1,4 +1,3 @@
-
 " Idendentify plantform {
     silent function! OSX()
         return has('macunix')
@@ -19,6 +18,8 @@
   syntax on
   filetype off                  " required
   set mouse=a
+  " use system clipboard
+  set clipboard=unnamed
 " }
 
 " General {
@@ -113,7 +114,6 @@
     Plugin 'ternjs/tern_for_vim'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'SirVer/ultisnips'
-    Plugin 'chrisgillis/vim-bootstrap3-snippets'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'mattn/emmet-vim'
     Plugin 'ashisha/image.vim'
@@ -228,7 +228,7 @@
     let g:ctrlp_cmd = 'CtrlPLastMode'         " set ctrlp use last search mode
     let g:ctrlp_map = '<C-p>'                 " set ctrlp key map
     let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
+    let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json', '.git', '.hg']
     let g:ctrlp_use_caching = 1
     let g:ctrlp_open_multiple_files = 'ij'
     let g:ctrlp_extensions = ['buffertag', 'tag', 'quickfix', 'dir']
@@ -247,6 +247,9 @@
     let g:UltiSnipsExpandTrigger="<Tab>"
     let g:UltiSnipsJumpForwardTrigger="<C-f>"
     let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+    " when in vue files, html, javascript and css snippets should be available
+    " too
+    "autocmd FileType vue UltiSnipsAddFiletypes vue.javascript.html.css
 
     " set tagbar
     let g:tagbar_show_linenumbers = 2
@@ -285,8 +288,17 @@
     \}
     " }
 
-" }
-" Mapping {
+    " ack.vim setting {
+    " use ag with vimgrep output format as search program 
+    let g:ackprg = 'ag --vimgrep'
+    let g:ackhighlight = 1
+    let g:ack_autofold_results = 1
+    let g:ack_mappings = {
+          \  'v':  '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
+          \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J' }
+    " }
+    " }
+    " Mapping {
     let mapleader=','
     let maplocalleader='_'
 
