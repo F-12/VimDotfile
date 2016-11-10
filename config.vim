@@ -45,6 +45,7 @@ Plugin 'vim-scripts/nginx.vim'
 Plugin 'tpope/vim-surround'
 " considering using neomake instead
 Plugin 'scrooloose/syntastic'
+Plugin 'neomake/neomake'
 Plugin 'majutsushi/tagbar'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -147,7 +148,7 @@ let g:airline#extensions#tabline#tabs_label = 'T'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline#extensions#tabline#show_close_button = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-
+let g:airline#extensions#neomake#enabled = 1
 
 " }
 
@@ -159,6 +160,8 @@ let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json', '.git', '.hg
 let g:ctrlp_use_caching = 1
 let g:ctrlp_open_multiple_files = 'ij'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'quickfix', 'dir']
+"set grepprg="ag\ --nogroup\ --nocolor"
+let g:ctrlp_user_command = 'ag %s -l --nocolor -f -g ""'
 
 " set YouCompleteMe
 let g:ycm_key_invoke_completion = '<M-Space>'
@@ -193,6 +196,7 @@ let g:gist_list_vsplit = 1
 
 " NERDTree setting {
 let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 " }
@@ -221,6 +225,10 @@ let g:ack_autofold_results = 1
 let g:ack_mappings = {
       \  'v':  '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
       \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J' }
+" }
+
+" neomake setting {
+
 " }
 " }
 " Mapping {
