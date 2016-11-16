@@ -245,6 +245,16 @@ nnoremap <Leader>vh :vertical :help<Space>
 
 " }
 
+" Navigate Mapping {
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+inoremap <A-h> <Esc><C-w>h
+inoremap <A-j> <Esc><C-w>j
+inoremap <A-k> <Esc><C-w>k
+inoremap <A-l> <Esc><C-w>l
+" }
 " NERDTree Mapping {
 noremap <C-\> :NERDTreeToggle<CR>
 "}

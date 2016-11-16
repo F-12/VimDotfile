@@ -489,18 +489,26 @@ endsnippet
 
 snippet nav-tabs "bootstrap3" w
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#">Home</a></li>
-	<li><a href="#">Profile</a></li>
-	<li><a href="#">Messages</a></li>
+	<li class="active"><a href="#$1" role="tab" data-toggle="tab">Home</a></li>
+	<li><a href="#$2" role="tab" data-toggle="tab">Profile</a></li>
 </ul>
+<!-- Tab panes -->
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="$3"></div>
+	<div role="tabpanel" class="tab-pane" id="$4"></div>
+</div>
 endsnippet
 
 snippet nav-pills "bootstrap3" w
 <ul class="nav nav-pills">
-	<li class="active"><a href="#">Home</a></li>
-	<li><a href="#">Profile</a></li>
-	<li><a href="#">Messages</a></li>
+	<li class="active"><a href="#$1" role="tab" data-toggle="pill">Home</a></li>
+	<li><a href="#$2" role="tab" data-toggle="pill">Profile</a></li>
 </ul>
+<!-- Tab panes -->
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="$3"></div>
+	<div role="tabpanel" class="tab-pane" id="$4"></div>
+</div>
 endsnippet
 
 snippet nav-pills-stacked "bootstrap3" w
