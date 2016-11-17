@@ -27,6 +27,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'sickill/vim-monokai'
+Plugin 'dracula/vim'
 
 " syntax highlighting
 "Plugin 'pangloss/vim-javascript'
@@ -58,7 +60,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mhinz/vim-rfc'
 Plugin 'cohama/lexima.vim'
-
+Plugin 'wting/gitsessions.vim'
 " Plugin 'mkitt/tabline.vim'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -230,6 +232,10 @@ let g:ack_mappings = {
 " neomake setting {
 
 " }
+"
+" gitsession setting {
+let g:gitsessions_dir = $XDG_DATA_HOME . "/nvim/session"
+" }
 " }
 " Mapping {
 let mapleader=','
@@ -238,8 +244,6 @@ let maplocalleader='_'
 " Basic Mapping {
 inoremap jk <Esc>
 inoremap <C-x> <Esc>ddi
-nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <Leader>sv :so $MYVIMRC<CR>
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 nnoremap <Leader>vh :vertical :help<Space>
 
