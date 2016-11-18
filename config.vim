@@ -60,7 +60,8 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mhinz/vim-rfc'
 Plugin 'cohama/lexima.vim'
-Plugin 'wting/gitsessions.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 " Plugin 'mkitt/tabline.vim'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -137,6 +138,7 @@ let g:airline_left_sep = "\uE0C6"
 let g:airline_right_sep = "\uE0C7"
 " set the CN (column number) symbol:
 let g:airline_section_z = airline#section#create(['%{line(".")}' . "," . '%{col(".")}' . "/" . '%{line("$")}'])
+let g:airline_theme = 'powerlineish'
 
 " set airline-tabline, see :h airline-tabline
 let g:airline#extensions#tabline#enabled = 1
@@ -233,8 +235,11 @@ let g:ack_mappings = {
 
 " }
 "
-" gitsession setting {
-let g:gitsessions_dir = $XDG_DATA_HOME . "/nvim/session"
+" vim-session setting {
+let g:sessions_directory = $XDG_DATA_HOME . "/nvim/session"
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+let g:session_persist_font = 0
 " }
 " }
 " Mapping {
