@@ -46,7 +46,7 @@ Plugin 'derekwyatt/vim-protodef'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'tpope/vim-surround'
 " considering using neomake instead
-Plugin 'scrooloose/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'neomake/neomake'
 Plugin 'majutsushi/tagbar'
 Plugin 'ternjs/tern_for_vim'
@@ -62,6 +62,8 @@ Plugin 'mhinz/vim-rfc'
 Plugin 'cohama/lexima.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+"Plugin 'Shougo/denite.nvim'
+"Plugin 'Shougo/unite.vim'
 " Plugin 'mkitt/tabline.vim'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -221,22 +223,35 @@ let s:emmet_settings = {
       \}
 " }
 
-" ack.vim setting {
-" use ag with vimgrep output format as search program 
-let g:ackprg = 'ag --vimgrep'
-let g:ackhighlight = 1
-let g:ack_autofold_results = 1
-let g:ack_mappings = {
-      \  'v':  '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
-      \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J' }
+" CtrlSF setting {
+let g:ctrlsf_winsize = '30%'
+let g:ctrlsf_position = 'right'
+let g:ctrlsf_auto_close = 0
 " }
 
 " neomake setting {
+let g:neomake_javascript_enabled_makers = ['eslint']
+"function! NeomakeESlintChecker()
+  "let l:npm_bin = ''
+  "let l:eslint = 'eslint'
 
+  "if executable('npm')
+    "let l:npm_bin = split(system('npm bin'), '\n')[0]
+  "endif
+
+  "if strlen(l:npm_bin) && executable(l:npm_bin . '/eslint')
+    "let l:eslint = l:npm_bin . '/eslint'
+  "endif
+
+  "let b:neomake_javascript_eslint_exe = l:eslint
+"endfunction
+
+"autocmd FileType javascript :call NeomakeESlintChecker()
+autocmd! BufWritePost,BufReadPost * Neomake
 " }
 "
 " vim-session setting {
-let g:sessions_directory = $XDG_DATA_HOME . "/nvim/session"
+let g:session_directory = $XDG_DATA_HOME . "/nvim/session"
 let g:session_autoload = 'no'
 let g:session_autosave = 'no'
 let g:session_persist_font = 0
@@ -251,7 +266,10 @@ inoremap jk <Esc>
 inoremap <C-x> <Esc>ddi
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 nnoremap <Leader>vh :vertical :help<Space>
-
+nnoremap <Leader>ln :lnext<CR>
+nnoremap <Leader>lp :lprev<CR>
+nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>lc :lclose<CR>
 " }
 
 " Navigate Mapping {
@@ -287,5 +305,19 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 " YCM mappings {
 nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 nnoremap <Leader>jr :YcmCompleter GoToReferences<CR>
+
+" Unite mappings {
+"nnoremap <Leader>f :<C-u>Unite -start-insert file<CR>
+"nnoremap <Leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
+" }
+"
+" vim-session mappings {
+nnoremap <Leader>sos :OpenSession<CR>
+nnoremap <Leader>sss :SaveSession<CR>
+"}
+"
+" CtrlSF mappings {
+nnoremap <Leader>f :CtrlSF<Space>
+" }
 " }
 " }
