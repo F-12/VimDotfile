@@ -231,21 +231,10 @@ let g:ctrlsf_auto_close = 0
 
 " neomake setting {
 let g:neomake_javascript_enabled_makers = ['eslint']
-"function! NeomakeESlintChecker()
-  "let l:npm_bin = ''
-  "let l:eslint = 'eslint'
-
-  "if executable('npm')
-    "let l:npm_bin = split(system('npm bin'), '\n')[0]
-  "endif
-
-  "if strlen(l:npm_bin) && executable(l:npm_bin . '/eslint')
-    "let l:eslint = l:npm_bin . '/eslint'
-  "endif
-
-  "let b:neomake_javascript_eslint_exe = l:eslint
-"endfunction
-
+let g:neomake_error_sign = {'text': '☞', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '⚩', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_info_sign = {'text': '➣', 'texthl': 'NeomakeInfoSign'}
+let g:neomake_message_sign = {'text': '☉', 'texthl': 'NeomakeMessageSign'}
 "autocmd FileType javascript :call NeomakeESlintChecker()
 autocmd! BufWritePost,BufReadPost * Neomake
 " }
@@ -320,4 +309,8 @@ nnoremap <Leader>sss :SaveSession<CR>
 nnoremap <Leader>f :CtrlSF<Space>
 " }
 " }
+" }
+"
+" autocmd {
+autocmd BufNewFile,BufRead *.we set filetype=vue
 " }
