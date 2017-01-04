@@ -141,7 +141,6 @@ let g:airline_right_sep = "\uE0C7"
 " set the CN (column number) symbol:
 let g:airline_section_z = airline#section#create(['%{line(".")}' . "," . '%{col(".")}' . "/" . '%{line("$")}'])
 let g:airline_theme = 'powerlineish'
-
 " set airline-tabline, see :h airline-tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_type = 1
