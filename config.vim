@@ -1,70 +1,62 @@
 " Plugin Install {
 
+let plugins = [
+\ 'tpope/vim-fugitive',
+\ 'ryanoasis/vim-devicons',
+\ 'scrooloose/nerdtree',
+\ 'Xuyuanp/nerdtree-git-plugin',
+\ 'mbbill/undotree',
+\ 'vim-airline/vim-airline',
+\ 'vim-airline/vim-airline-themes',
+\ 'altercation/vim-colors-solarized',
+\ 'gosukiwi/vim-atom-dark',
+\ 'NLKNguyen/papercolor-theme',
+\ 'sickill/vim-monokai',
+\ 'dracula/vim',
+\ 'othree/yajs.vim',
+\ 'ctrlpvim/ctrlp.vim',
+\ 'kshenoy/vim-signature',
+\ 'yegappan/grep',
+\ 'mileszs/ack.vim',
+\ 'dyng/ctrlsf.vim',
+\ 'terryma/vim-multiple-cursors',
+\ 'scrooloose/nerdcommenter',
+\ 'derekwyatt/vim-protodef',
+\ 'vim-scripts/nginx.vim',
+\ 'tpope/vim-surround',
+\ 'neomake/neomake',
+\ 'majutsushi/tagbar',
+\ 'ternjs/tern_for_vim',
+\ 'Valloric/YouCompleteMe',
+\ 'SirVer/ultisnips',
+\ 'airblade/vim-gitgutter',
+\ 'mattn/emmet-vim',
+\ 'ashisha/image.vim',
+\ 'darthmall/vim-vue',
+\ 'mattn/webapi-vim',
+\ 'mattn/gist-vim',
+\ 'mhinz/vim-rfc',
+\ 'cohama/lexima.vim',
+\ 'xolox/vim-misc',
+\ 'xolox/vim-session',
+\ ]
+
 " Vundle begin {
 " set the runtime path to include Vundle and initialize
 set rtp+=$XDG_CONFIG_HOME/vim/bundle/Vundle.vim
-"call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin() alternatively, pass a path where Vundle should install plugins
 call vundle#begin($XDG_CONFIG_HOME . "/vim/bundle")
 " }
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 " Install Plugin {
 " Keep Plugin commands between vundle#begin/end.
+for p in plugins
+  Plugin p
+endfor
 
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-Plugin 'mbbill/undotree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'sickill/vim-monokai'
-Plugin 'dracula/vim'
-
-" syntax highlighting
-"Plugin 'pangloss/vim-javascript'
-Plugin 'othree/yajs.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-
-Plugin 'kshenoy/vim-signature'
-Plugin 'yegappan/grep'
-Plugin 'mileszs/ack.vim'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'derekwyatt/vim-protodef'
-" Plugin 'vim-fswitch'
-Plugin 'vim-scripts/nginx.vim'
-Plugin 'tpope/vim-surround'
-" considering using neomake instead
-"Plugin 'vim-syntastic/syntastic'
-Plugin 'neomake/neomake'
-Plugin 'majutsushi/tagbar'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'mattn/emmet-vim'
-Plugin 'ashisha/image.vim'
-Plugin 'darthmall/vim-vue'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-Plugin 'mhinz/vim-rfc'
-Plugin 'cohama/lexima.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-"Plugin 'Shougo/denite.nvim'
-"Plugin 'Shougo/unite.vim'
-" Plugin 'mkitt/tabline.vim'
+" Plugin 'tpope/vim-fugitive'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
@@ -75,12 +67,10 @@ Plugin 'xolox/vim-session'
 " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
 
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
+" The sparkup vim script is in a subdirectory of this repo called vim. Pass the path to set the runtimepath properly.
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
+" Install L9 and avoid a Naming conflict if you've already installed a different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " }
