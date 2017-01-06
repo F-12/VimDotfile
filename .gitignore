@@ -1,5 +1,12 @@
 bundle/
+repos/
 .undo_history/
+.cache/
 *.swp
 .swap/
-.backup
+.backup/
+cache_nvim
+cache_vim
+state_nvim.vim
+state_vim.vim
+.netrwhist

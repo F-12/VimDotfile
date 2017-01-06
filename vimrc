@@ -1,7 +1,6 @@
 source $HOME/.config/vim/before.vim
 
 " Vim8 package {
-packadd! matchit
 " }
 
 source $HOME/.config/vim/config.vim

@@ -8,10 +8,7 @@ let plugins = [
 \ 'mbbill/undotree',
 \ 'vim-airline/vim-airline',
 \ 'vim-airline/vim-airline-themes',
-\ 'altercation/vim-colors-solarized',
-\ 'gosukiwi/vim-atom-dark',
 \ 'NLKNguyen/papercolor-theme',
-\ 'sickill/vim-monokai',
 \ 'dracula/vim',
 \ 'othree/yajs.vim',
 \ 'ctrlpvim/ctrlp.vim',
@@ -31,7 +28,6 @@ let plugins = [
 \ 'SirVer/ultisnips',
 \ 'airblade/vim-gitgutter',
 \ 'mattn/emmet-vim',
-\ 'ashisha/image.vim',
 \ 'darthmall/vim-vue',
 \ 'mattn/webapi-vim',
 \ 'mattn/gist-vim',
@@ -41,42 +37,19 @@ let plugins = [
 \ 'xolox/vim-session',
 \ ]
 
-" Vundle begin {
-" set the runtime path to include Vundle and initialize
-set rtp+=$XDG_CONFIG_HOME/vim/bundle/Vundle.vim
-"call vundle#begin() alternatively, pass a path where Vundle should install plugins
-call vundle#begin($XDG_CONFIG_HOME . "/vim/bundle")
-" }
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" Install Plugin {
-" Keep Plugin commands between vundle#begin/end.
-for p in plugins
-  Plugin p
-endfor
+set rtp+=$HOME/.config/vim/repos/github.com/Shougo/dein.vim
+if dein#load_state($HOME . "/.config/vim")
+  call dein#begin($HOME . "/.config/vim")
 
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
+  call dein#add($HOME . "/.config/vim/repos/github.com/Shougo/dein.vim")
 
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
+  for p in plugins
+    call dein#add(p)
+  endfor
 
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-
-" The sparkup vim script is in a subdirectory of this repo called vim. Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" Install L9 and avoid a Naming conflict if you've already installed a different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" }
-" All of your Plugins must be added before the following line
-" Vundel end {
-call vundle#end()            " required
+  call dein#end()
+  call dein#save_state()
+endif
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -126,12 +99,14 @@ let g:WebDevIconsOS = 'Darwin'
 
 " vim-airline {
 let g:airline_powerline_fonts = 1
+let g:airline_inactive_collapse = 1
 let g:airline_left_sep = "\uE0C6"
 let g:airline_right_sep = "\uE0C7"
 " set the CN (column number) symbol:
-let g:airline_section_z = airline#section#create(['%{line(".")}' . "," . '%{col(".")}' . "/" . '%{line("$")}'])
+"let g:airline_section_z = airline#section#create(['%{line(".")}' . "," . '%{col(".")}' . "/" . '%{line("$")}'])
 let g:airline_theme = 'powerlineish'
 " set airline-tabline, see :h airline-tabline
+"let g:airline_extensions = ['branch', 'tabline', 'tagbar', 'neomake']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tabline#show_buffers = 1
@@ -144,7 +119,8 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline#extensions#tabline#show_close_button = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#neomake#enabled = 1
-
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
 " }
 
 " set ctrlp
@@ -159,17 +135,17 @@ let g:ctrlp_extensions = ['buffertag', 'tag', 'quickfix', 'dir']
 let g:ctrlp_user_command = 'ag %s -l --nocolor -f -g ""'
 
 " set YouCompleteMe
-let g:ycm_key_invoke_completion = '<M-Space>'
+"let g:ycm_key_invoke_completion = '<M-Space>'
 let g:ycm_auto_trigger = 1
 let g:ycm_error_symbol = "\uF0A4"       " use vim-devicons
 let g:ycm_warning_symbol = "\uF026"
 let g:ycm_complete_in_comments = 0
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
+let g:ycm_autoclose_preview_window_after_completion = 1
 " set UltiSnips
 let g:UltiSnipsEditSplit = "vertical"
-let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+let g:UltiSnipsSnippetsDir = "$HOME/.config/vim/UltiSnips"
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-f>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
@@ -234,6 +210,8 @@ let g:session_autoload = 'no'
 let g:session_autosave = 'no'
 let g:session_persist_font = 0
 " }
+"
+let g:deoplete#enable_at_startup = 1
 " }
 " Mapping {
 let mapleader=','
@@ -266,22 +244,8 @@ noremap <C-\> :NERDTreeToggle<CR>
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
-" airline-tabline mapping {
-"nnoremap <Leader>1 <Plug>AirlineSelectTab1
-"nnoremap <Leader>2 <Plug>AirlineSelectTab2
-"nnoremap <Leader>3 <Plug>AirlineSelectTab3
-"nnoremap <Leader>4 <Plug>AirlineSelectTab4
-"nnoremap <Leader>5 <Plug>AirlineSelectTab5
-"nnoremap <Leader>6 <Plug>AirlineSelectTab6
-"nnoremap <Leader>7 <Plug>AirlineSelectTab7
-"nnoremap <Leader>8 <Plug>AirlineSelectTab8
-"nnoremap <Leader>9 <Plug>AirlineSelectTab9
-"nnoremap <Leader>- <Plug>AirlineSelectPrevTab
-"nnoremap <Leader>+ <Plug>AirlineSelectNextTab
-" }
-
 " YCM mappings {
-nnoremap <Leader>jd :YcmCompleter GoTo<CR>
+nnoremap <Leader>jt :YcmCompleter GoTo<CR>
 nnoremap <Leader>jr :YcmCompleter GoToReferences<CR>
 
 " Unite mappings {

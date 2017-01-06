@@ -1,7 +1,11 @@
-source $XDG_CONFIG_HOME/vim/before.vim
+set termguicolors
+source $HOME/.config/vim/before.vim
 
-source $XDG_CONFIG_HOME/vim/config.vim
+source $HOME/.config/vim/config.vim
 
+
+let g:python_host_prog  = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
 " Neovim Mappings {{{
 " Terminal Mappings {{{
 tnoremap jk <C-\><C-n>
@@ -9,9 +13,9 @@ tnoremap <Esc> <C-\><C-n>
 " }}}
 
 " Normal Mode Mapping {
-nnoremap <Leader>ev :vsplit ~/.config/nvim/init.vim<CR>
-nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>ev :vsplit $HOME/.config/nvim/init.vim<CR>
+nnoremap <Leader>sv :so $HOME/.config/nvim/init.vim<CR>
 " }}}
 
 " }}}
-source $XDG_CONFIG_HOME/vim/after.vim
+source $HOME/.config/vim/after.vim

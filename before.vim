@@ -13,9 +13,8 @@ endfunction
 " }
 
 " General {
-set nocompatible              " better be first line  be iMproved, required
 syntax enable
-syntax on
+"syntax on
 filetype off                  " required
 set mouse=a
 " use system clipboard
@@ -31,12 +30,11 @@ set autowriteall
 set showcmd
 
 set backup
-set backupdir=$XDG_CACHE_HOME/vim/backup
-set directory=$XDG_CACHE_HOME/vim/swap
-"set vimnfo+=n$XDG_CACHE_HOME/vim/viminfo
+set backupdir=$HOME/.cache/vim/backup
+set directory=$HOME/.cache/vim/swap
 
 set undofile
-set undodir=$HOME/.vim/.undo_history/
+set undodir=$HOME/.cache/vim/.undo/
 
 " Vim UI {
 set backspace=indent,eol,start
@@ -49,7 +47,6 @@ set nofoldenable
 set list                        " show tabs and end of lines
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 set cmdheight=2
-set termguicolors
 " }
 
 " Formating {
