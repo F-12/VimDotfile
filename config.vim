@@ -1,6 +1,7 @@
 " Plugin Install {
 
-let plugins = [
+let s:plugins = [
+\ 'Shougo/dein.vim',
 \ 'tpope/vim-fugitive',
 \ 'ryanoasis/vim-devicons',
 \ 'scrooloose/nerdtree',
@@ -37,31 +38,17 @@ let plugins = [
 \ 'xolox/vim-session',
 \ ]
 
+let s:vim_path = $HOME . "/.config/vim"
 set rtp+=$HOME/.config/vim/repos/github.com/Shougo/dein.vim
-if dein#load_state($HOME . "/.config/vim")
-  call dein#begin($HOME . "/.config/vim")
-
-  call dein#add($HOME . "/.config/vim/repos/github.com/Shougo/dein.vim")
-
-  for p in plugins
+if dein#load_state(s:vim_path)
+  call dein#begin(s:vim_path)
+  for p in s:plugins
     call dein#add(p)
   endfor
-
   call dein#end()
   call dein#save_state()
 endif
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 " }
 
 " Plugins Configurations {
